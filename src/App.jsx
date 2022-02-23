@@ -11,15 +11,19 @@ const App = () => {
   const [people, setPeople] = useState([]);
 
   const getFilms = async () => {
-    const response = await fetch("films endpoint goes here");
-    const filmData = await response.json();
-    setFilms(filmData);
+    // fetches data from the api
+    const response = await fetch("https://ghibliapi.herokuapp.com/films"); // this is the fetch
+    const filmData = await response.json(); // parses the response as JSON data to produce a JS object
+    console.log(filmData); // logs the films object
+    setFilms(filmData); // passes the films object to the films state, which is then sent to the Films Component
   };
 
   const getPeople = async () => {
-    const response = await fetch("people endpoint goes here");
-    const peopleData = await response.json();
-    setPeople(peopleData);
+    // fetches data from the api
+    const response = await fetch("https://ghibliapi.herokuapp.com/people"); // this is the fetch
+    const peopleData = await response.json(); // parses the response as JSON data to produce a JS object
+    console.log(peopleData); // logs the people object
+    setPeople(peopleData); // passes the people object to the people state, which is then sent to the People Component
   };
 
   return (
@@ -28,8 +32,8 @@ const App = () => {
       <button onClick={getFilms}>Gibblee Films</button>
       <button onClick={getPeople}>Gibblie People</button>
       <div>components below</div>
-      <FilmsComp />
-      <PeopleComp />
+      <FilmsComp movies={films} />
+      <PeopleComp characters={people} />
     </>
   );
 };
@@ -41,5 +45,6 @@ export default App;
 // todo add boots styling
 // todo map over films
 // todo map over people
-// todo
-// todo
+// todo convert running_time to display XX HR XX MIN
+// todo link to open a new tab with the JSON for that particular film / person => concatenate endpoint with id, but how to get it to concat within a link?
+// todo set the movie banner as the background on each card
