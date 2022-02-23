@@ -9,6 +9,7 @@ import PeopleComp from "./components/PeopleComp";
 const App = () => {
   const [films, setFilms] = useState([]);
   const [people, setPeople] = useState([]);
+  //   const [view, setView] = useState(0);
 
   const getFilms = async () => {
     // fetches data from the api
@@ -16,6 +17,7 @@ const App = () => {
     const filmData = await response.json(); // parses the response as JSON data to produce a JS object
     console.log(filmData); // logs the films object
     setFilms(filmData); // passes the films object to the films state, which is then sent to the Films Component
+    setPeople([]);
   };
 
   const getPeople = async () => {
@@ -24,14 +26,19 @@ const App = () => {
     const peopleData = await response.json(); // parses the response as JSON data to produce a JS object
     console.log(peopleData); // logs the people object
     setPeople(peopleData); // passes the people object to the people state, which is then sent to the People Component
+    setFilms([]);
   };
 
   return (
     <>
-      <div>Gibbly Getter!</div>
-      <button onClick={getFilms}>Gibblee Films</button>
-      <button onClick={getPeople}>Gibblie People</button>
-      <div>components below</div>
+      <div className="d-flex justify-content-center">
+        <button className="btn btn-primary btn-lg mx-2" onClick={getFilms}>
+          Gibblee Films
+        </button>
+        <button className="btn btn-primary btn-lg mx-2" onClick={getPeople}>
+          Gibblie People
+        </button>
+      </div>
       <FilmsComp movies={films} />
       <PeopleComp characters={people} />
     </>
@@ -46,5 +53,5 @@ export default App;
 // todo map over films
 // todo map over people
 // todo convert running_time to display XX HR XX MIN
-// todo link to open a new tab with the JSON for that particular film / person => concatenate endpoint with id, but how to get it to concat within a link?
-// todo set the movie banner as the background on each card
+// todo link to open a new tab with the JSON for that particular film / person =>? concatenate endpoint with id, but how to get it to concat within a link?
+// todo =>? how to use the src="{props.movie_banner}" to display the movie artwork?
