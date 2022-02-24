@@ -1,6 +1,6 @@
 //*Imports
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 //*Components
@@ -12,42 +12,37 @@ const App = () => {
   const [people, setPeople] = useState([]); // controls the people state
   const [view, setView] = useState(0); // controls the view state
 
-  const getFilms = async () => {
-    try {
-      // this is view 1
-      // fetches data from the api
-      const response = await fetch("https://ghibliapi.herokuapp.com/films"); // this is the fetch
-      const filmData = await response.json(); // parses the response as JSON data to produce a JS object
-      console.log(filmData); // logs the films object
-      setFilms(filmData); // passes the films object to the films state, which is then sent to the Films Component
-      setView(1); // displays the Films Component if fetch is successful
-    } catch (error) {
-      console.log(error);
-      setView(3); // displays an error if fetch is unsuccessful
-    }
+  const getFilms = () => {
+    // this is view 1
+    setView(1); // displays the People Component if fetch is successful
   };
 
-  const getPeople = async () => {
+  const getPeople = () => {
+    // this is view 2
+    setView(2); // displays the People Component if fetch is successful
+  };
+
+  const getData = async () => {
     try {
-      // this is veiw 2
       // fetches data from the api
       const response1 = await fetch("https://ghibliapi.herokuapp.com/people"); // this is the fetch
       const peopleData = await response1.json(); // parses the response as JSON data to produce a JS object
       console.log(peopleData); // logs the people object
       setPeople(peopleData); // passes the people object to the people state, which is then sent to the People Component
-      setView(2); // displays the People Component if fetch is successful
 
-      //**********just in case user clicks on people first */
-
-      const response2 = await fetch("https://ghibliapi.herokuapp.com/films"); // this is the fetch
-      const filmData = await response2.json(); // parses the response as JSON data to produce a JS object
-      // console.log(filmData); // logs the films object
-      setFilms(filmData);
+      // fetches data from the api
+      const response = await fetch("https://ghibliapi.herokuapp.com/films"); // this is the fetch
+      const filmData = await response.json(); // parses the response as JSON data to produce a JS object
+      console.log(filmData); // logs the films object
+      setFilms(filmData); // passes the films object to the films state, which is then sent to the Films Component
     } catch (error) {
-      console.log(error);
       setView(3); // displays an error page if fetch is unsuccessful
     }
   };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <>
@@ -70,7 +65,7 @@ const App = () => {
 
       {view === 1 && ( // this displays Films Component when the films button is clicked
         <>
-          <FilmsComp movies={films} />
+          <FilmsComp characters={people} movies={films} />
         </>
       )}
 

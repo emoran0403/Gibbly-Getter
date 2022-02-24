@@ -30,19 +30,19 @@ const PeopleComp = (props) => {
    *
    */
 
-  // const getMovieTitle = (character, films) => {
-  //   console.log(character);
-  //   console.log(films);
+  const getMovieTitle = (character) => {
+    console.log(character);
+    console.log(props.films);
 
-  //   // let movieIDfromChar = character.films[0].substring(38); // this is the movie id from the character
-  //   // for (let i = 0; i <= films.length; i++) {
-  //   //   // this will go thru each film
-  //   //   let movieIDfromMovie = films[i].id; // this is the movie id, which we are looking to match to the movie id from character
-  //   //   if (movieIDfromChar === movieIDfromMovie) {
-  //   //     return films[i].title; // if it is a match, then return the title
-  //   //   }
-  //   // }
-  // };
+    let movieIDfromChar = character.films[0].substring(38); // this is the movie id from the character
+    for (let i = 0; i <= props.films.length; i++) {
+      // this will go thru each film
+      let movieIDfromMovie = props.films[i].id; // this is the movie id, which we are looking to match to the movie id from character
+      if (movieIDfromChar === movieIDfromMovie) {
+        return props.films[i].title; // if it is a match, then return the title
+      }
+    }
+  };
 
   return (
     <>
@@ -55,9 +55,9 @@ const PeopleComp = (props) => {
                   {character.name} | {character.gender} | {character.age}
                 </h5>
                 <h6 className="card-subtitle mb-2 text-muted">
-                  {/*Species: character.species | */}Eye-color: {character.eye_color} | Hair-Color: {character.hair_color}
+                  Eye-color: {character.eye_color} | Hair-Color: {character.hair_color}
                 </h6>
-                <p className="card-text">Appears in: {character.films[0].substring(38)}</p> {/* - getMovieTitle(character, props.films)shows the movie id*/}
+                <p className="card-text">Appears in: {getMovieTitle(character)}</p>
                 <footer className="blockquote-footer">
                   <a className="btn btn-success btn-sm" href={character.url} target="_blank">
                     View my JSON
