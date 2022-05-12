@@ -11,6 +11,11 @@ const App = () => {
   const [people, setPeople] = useState([]); // controls the people state
   const [view, setView] = useState(0); // controls the view state
 
+  const goHome = () => {
+    // this is view 0
+    setView(0); // displays the Home view
+  };
+
   const getFilms = () => {
     // this is view 1
     setView(1); // displays the People Component if fetch is successful
@@ -46,6 +51,9 @@ const App = () => {
   return (
     <>
       <div className="d-flex mt-5 justify-content-center">
+        <button className="btn btn-primary btn-lg mx-2" onClick={goHome}>
+          Gibblee Home
+        </button>
         <button className="btn btn-primary btn-lg mx-2" onClick={getFilms}>
           Gibblee Films
         </button>
