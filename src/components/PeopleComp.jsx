@@ -1,35 +1,6 @@
 import React from "react";
 
 const PeopleComp = (props) => {
-  // console.log(props.films);
-
-  // let temp = "https://ghibliapi.herokuapp.com/films/";
-  // console.log(temp.length);
-
-  // for (let i = 0; i <= props.characters.length - 1; i++) {
-  //   // console.log(props.characters[i]);
-  //   for (let j = 0; j <= props.characters[i].films.length - 1; j++) {
-  //     console.log(props.characters[i].films[0]);
-  //     // console.log(`character ${i}`);
-  //   }
-  // }
-
-  /**
-   * props.characters[i].films[0] this gets the first film in the film array, which is the movie appearance
-   * since there is only 1 film in the array, i use position [0]
-   * the film id is at the end, and each url is the same length
-   * props.films[0].substring(38) gives me the id of the particular movie
-   * with the movie id from character, i then have to go thru the movies array, then into each movie object, and compare it with the id key
-   * if they are a match, then i need to get that movies title from the title property
-   *
-   *
-   *
-   *
-   * a similar process can be done for the species
-   *
-   *
-   */
-
   const getMovieTitle = (character) => {
     console.log(character);
     console.log(props.films);
